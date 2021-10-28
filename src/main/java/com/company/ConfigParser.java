@@ -24,9 +24,9 @@ public class ConfigParser {
         while (readFile) {
             System.out.println("""
                         Choose a file below:
-                        1 -> dev.txt
-                        2 -> production.txt
-                        3 -> staging.txt""");
+                        1 -> config.txt
+                        2 -> config.txt.production
+                        3 -> config.txt.staging""");
             System.out.print("Enter The INTEGER that represent your choice: ");
             Scanner readIn = new Scanner(System.in);
             try {
@@ -36,16 +36,16 @@ public class ConfigParser {
                 String file;
                 switch (option) {
                     case 2:
-                        file = "staging.txt";
+                        file = "config.txt.staging";
                         break;
                     case 3:
-                        file = "production.txt";
+                        file = "config.txt.production";
                         break;
                     default:
-                        file = "dev.txt";
+                        file = "config.txt";
                 }
                 map = new HashMap<>();
-                Scanner input = new Scanner(new File("src/"+file));
+                Scanner input = new Scanner(new File("src/main/java/"+file));
                 while (input.hasNext()) {
                     String answer = input.nextLine();
                     if (!answer.isBlank())
@@ -76,7 +76,7 @@ public class ConfigParser {
                 //3System.out.println(e.getMessage());
             }
 
-            System.out.println("\n"+map);
+           // System.out.println("\n"+map);
 
             System.out.println("Enter A Key to get the Value");
             //System.out.println(map.get("application1.name"));

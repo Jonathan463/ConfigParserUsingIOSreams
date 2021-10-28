@@ -32,9 +32,18 @@ public class ConfigParser1 {
 
 
     public ConfigParser1(String fileName){
-        if(!fileName.equalsIgnoreCase("dev.txt") && !fileName.equalsIgnoreCase("production.txt")
-                && !fileName.equalsIgnoreCase("staging.txt"))throw new IllegalArgumentException();
-        this.fileName = fileName;
+    try{
+
+        if (!fileName.equalsIgnoreCase("config.txt") && !fileName.equalsIgnoreCase("config.txt.production")
+                && !fileName.equalsIgnoreCase("config.txt.staging")) {
+            throw new IllegalArgumentException("You Entered A Wrong file Name");
+        }else {
+            this.fileName = fileName;
+        }
+    }
+        catch(IllegalArgumentException e){
+            e.printStackTrace();
+    }
     }
     public void readFromFIle(){
         System.out.println("Hello, Welcome!\n");
@@ -47,30 +56,12 @@ public class ConfigParser1 {
         int appSectOccurrence = 1;
 
         while (readFile) {
-//            System.out.println("""
-//                        Choose a file below:
-//                        1 -> dev.txt
-//                        2 -> production.txt
-//                        3 -> staging.txt""");
-//            System.out.print("Enter your INTEGER that represent your choice: ");
-//            Scanner readIn = new Scanner(System.in);
+//
             try {
 //
-//                int option = readIn.nextInt();
-//                readIn.nextLine();
-//                String file;
-//                switch (option) {
-//                    case 2:
-//                        file = "staging.txt";
-//                        break;
-//                    case 3:
-//                        file = "production.txt";
-//                        break;
-//                    default:
-//                        file = "dev.txt";
-//                }
+//
                 map = new HashMap<>();
-                input = new BufferedReader(new FileReader("src/main/java/"+fileName));
+                input = new BufferedReader(new FileReader("/Users/decagon/IdeaProjects/ConfigParserApp/src/main/java/"+fileName));
                 String answer;
                 while ((answer = input.readLine())!= null) {
 
@@ -102,22 +93,9 @@ public class ConfigParser1 {
                 //3System.out.println(e.getMessage());
             }
 
-            System.out.println("\n"+map);
+            //System.out.println("\n"+map);
             System.out.println("You are in "+fileName);
-            //getName(keyName);
-//            System.out.println("Enter A Key to get the Value");
-//            //System.out.println(map.get("application1.name"));
-//            Scanner sc = new Scanner(System.in);
-//            String keyName = sc.nextLine();
-//            System.out.println(keyName +" = "+ getName(keyName));
-//            System.out.print("\nWould you like to run this application again (Y/N): ");
-//            String response = readIn.nextLine();
-////
-//            if (response.equalsIgnoreCase("Y") || response.equalsIgnoreCase("Yes")){
-//                readFromFIle();}
-//            else {
-//                readFile = false;
-//            }
+
             readFile = false;
         }
 
